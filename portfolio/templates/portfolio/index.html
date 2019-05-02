@@ -1,0 +1,283 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+<!-- start banner Area -->
+<section class="banner-area">
+    <div class="container">
+        <div class="row fullscreen align-items-center justify-content-between">
+            {% for personal in personal %}
+                <div class="col-lg-6 col-md-6 banner-left">
+                    <h6>{{ personal.myself }}</h6>
+                    <h1>{{ personal.Name }}</h1>
+                    <p>
+                        {{ personal.detail }}
+                    </p>
+                    <a href="#" class="primary-btn text-uppercase">{{ personal.discover }}</a>
+                </div>
+                <div class="col-lg-6 col-md-6 banner-right d-flex align-self-end">
+                    <img class="img-fluid" src="{{ personal.image.url }}" alt="">
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+<!-- End banner Area -->
+
+<!-- Start home-about Area -->
+<section class="home-about-area pt-120">
+    <div class="container">
+        {% for about in about %}
+            <div class="row align-items-center justify-content-between">
+
+                <div class="col-lg-6 col-md-6 home-about-left">
+                    <img class="img-fluid" src="{{ about.image.url }}" alt="">
+                </div>
+                <div class="col-lg-5 col-md-6 home-about-right">
+                    <h6>{{ about.tell_about }}</h6>
+                    <h1 class="text-uppercase">{{ about.detail_heading }}</h1>
+                    <p>
+                        {{ about.personal_detail }}
+                    </p>
+                    <a href="#" class="primary-btn text-uppercase">{{ about.view }}</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</section>
+<!-- End home-about Area -->
+
+<!-- Start services Area -->
+<section class="services-area section-gap">
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+
+            <div class="menu-content  col-lg-7">
+                <div class="title text-center">
+                    <h1 class="mb-10">My Offered Services</h1>
+                    <p>At about this time of year, some months after New Year’s resolutions have been made and kept,
+                        or made and neglected.</p>
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            {% for i in service %}
+                <div class="col-lg-4 col-md-6">
+                    <div class="single-services">
+                        <span class="{{ i.service_tag }}"></span>
+                        <a href="#"><h4>{{ i.Name }}</h4></a>
+                        <p>
+                            {{ i.Description }}
+                        </p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+<!-- End services Area -->
+
+<!-- Start fact Area -->
+<section class="facts-area section-gap" id="facts-area">
+    <div class="container">
+        <div class="row">
+            {% for complete in complete_service %}
+                <div class="col-lg-3 col-md-6 single-fact">
+                    <h1 class="counter">{{ complete.number_of_services }}</h1>
+                    <p>{{ complete.services_title }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+<!-- end fact Area -->
+
+<!-- Start portfolio-area Area -->
+<section class="portfolio-area section-gap" id="portfolio">
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+
+            <div class="menu-content pb-70 col-lg-8">
+                <div class="title text-center">
+                    <h1 class="mb-10">Our Latest Featured Projects</h1>
+                    <p>Who are in extremely love with eco friendly system.</p>
+                </div>
+            </div>
+
+        </div>
+        <div class="filters">
+            <ul>
+                <li class="active" data-filter="*">All</li>
+                <li data-filter=".vector">Vector</li>
+                <li data-filter=".raster">Raster</li>
+                <li data-filter=".ui">UI/UX</li>
+                <li data-filter=".printing">Printing</li>
+            </ul>
+        </div>
+        <div class="filters-content">
+            <div class="row">
+                {% for product in feature %}
+                    <div class="single-portfolio col-sm-4 all vector">
+                        <div class="relative">
+                            <div class="thumb">
+                                <div class="overlay overlay-bg"></div>
+                                <img class="img-fluid" src="{{ product.image.url }}" alt="">
+                            </div>
+                            <a href="{{ product.image.url }}" class="img-pop-up">
+                                <div class="middle">
+                                    <div class="text align-self-center d-flex"><img
+                                            src="{{ product.previous_img.url }}"
+                                            alt=""></div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="p-inner">
+                            <h4>{{ product.title }}</h4>
+                            <div class="cat">{{ product.category }}</div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+    </div>
+</section>
+<!-- End portfolio-area Area -->
+
+<!-- Start testimonial Area -->
+<section class="testimonial-area section-gap">
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+
+            <div class="menu-content pb-70 col-lg-8">
+                <div class="title text-center">
+                    <h1 class="mb-10">Client’s Feedback About Me</h1>
+                    <p>It is very easy to start smoking but it is an uphill task to quit it. Ask any chain
+                        smoker or even a person.</p>
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+
+            <div class="active-testimonial">
+                {% for reviews in feedback %}
+                    <div class="single-testimonial item d-flex flex-row">
+                        <div class="thumb">
+                            <img class="img-fluid" src="{{ reviews.Image.url }}" alt="">
+                        </div>
+                        <div class="desc">
+                            <p>
+                                {{ reviews.feedback }}
+                            </p>
+                            <h4>{{ reviews.client_name }}</h4>
+                            <p>{{ reviews.client_post }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End testimonial Area -->
+
+<!-- Start price Area -->
+<section class="price-area section-gap">
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+
+            <div class="menu-content pb-70 col-lg-8">
+                <div class="title text-center">
+                    <h1 class="mb-10">Choose Your Plan</h1>
+                    <p>When someone does something that they know that they shouldn’t do, did they.</p>
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            {% for plan in chose_plan %}
+                <div class="col-lg-3 col-md-6 single-price">
+                    <div class="top-part">
+                        <h1 class="package-no">{{ plan.package_number }}</h1>
+                        <h4>{{ plan.package_name }}</h4>
+                        <p class="mt-10">{{ plan.package_title }}</p>
+                    </div>
+                    <div class="package-list">
+                        <ul>
+                            {{ plan.packages|safe }}
+                        </ul>
+                    </div>
+                    <div class="bottom-part">
+                        <h1>{{ plan.price }}</h1>
+                        <a class="price-btn text-uppercase" href="#">{{ plan.buy }}</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+<!-- End price Area -->
+
+<!-- Start recent-blog Area -->
+<section class="recent-blog-area section-gap">
+    <div class="container">
+        <div class="row justify-content-center">
+
+            <div class="col-md-8 pb-30 header-text">
+                <h1>Latest Posts From Our Blog</h1>
+                <p>
+                    You may be a skillful, effective employer but if you don’t trust your personnel and the opposite,
+                    then the chances of improving and expanding the business
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            {% for post in blog %}
+                <div class="single-recent-blog col-lg-4 col-md-4">
+                    <div class="thumb">
+                        <img class="f-img img-fluid mx-auto" src="{{ post.latest_Image.url }}" alt="">
+                    </div>
+                    <div class="bottom d-flex justify-content-between align-items-center flex-wrap">
+                        <div>
+                            <img class="img-fluid" src="{{ post.user_image.url }}" alt="">
+                            <a href="#"><span>{{ post.user_name }}</span></a>
+                        </div>
+                        <div class="meta">
+                            {{ post.date }}
+                            <span class="lnr lnr-heart"></span> {{ post.heart_tag }}
+                            <span class="lnr lnr-bubble"></span> {{ post.bubble_tag }}
+                        </div>
+                    </div>
+                    <a href="#">
+                        <h4>{{ post.image_title }}
+                        </h4>
+                    </a>
+                    <p>
+                        {{ post.image_description }}
+                    </p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+<!-- end recent-blog Area -->
+
+<!-- Start brands Area -->
+<section class="brands-area">
+    <div class="container">
+        <div class="brand-wrap">
+            <div class="row align-items-center active-brand-carusel justify-content-start no-gutters">
+                {% for image in label %}
+                    <div class="col single-brand">
+                        <a href="#"><img class="mx-auto" src="{{ image.label.url }}" alt=""></a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End brands Area -->
+
+
+{% endblock %}

@@ -1,0 +1,236 @@
+{% extends 'base.html' %}
+{% block content %}
+    {% load static %}
+    <!-- start banner Area -->
+    {% for banner in blog_banner %}
+        <section class="{{ banner.bg_image }}" id="home">
+            <div class="overlay overlay-bg"></div>
+            <div class="container">
+                <div class="row d-flex align-items-center justify-content-center">
+                    <div class="about-content blog-header-content col-lg-12">
+                        <h1 class="text-white">
+                            {{ banner.title }}
+                        </h1>
+                        <p class="text-white">
+                            {{ banner.description }}
+                        </p>
+                        <a href="{% url 'portfolio:blogsingle' %}" class="primary-btn">{{ banner.view_button }}</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    {% endfor %}
+    <!-- End banner Area -->
+
+    <!-- Start top-category-widget Area -->
+    <section class="top-category-widget-area pt-90 pb-90 ">
+        <div class="container">
+            <div class="row">
+                {% for category in blog_category_widget %}
+                    <div class="col-lg-4">
+                        <div class="single-cat-widget">
+                            <div class="content relative">
+                                <div class="overlay overlay-bg"></div>
+                                <a href="#" target="_blank">
+                                    <div class="thumb">
+                                        <img class="content-image img-fluid d-block mx-auto"
+                                             src="{{ category.category_image.url }}"
+                                             alt="">
+                                    </div>
+                                    <div class="content-details">
+                                        <h4 class="content-title mx-auto text-uppercase">{{ category.category_title }}</h4>
+                                        <span></span>
+                                        <p>{{ category.category_description }}</p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    <!-- End top-category-widget Area -->
+
+    <!-- Start post-content Area -->
+    <section class="post-content-area">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-lg-8 posts-list">
+                    {% for content in blog_content %}
+                        <div class="single-post row">
+                            <div class="col-lg-3  col-md-3 meta-details">
+                                {{ content.tag|safe }}
+                                {#                                <ul class="tags">#}
+                                {#                                    <li><a href="#">{{ content.tag_1 }},</a></li>#}
+                                {#                                    <li><a href="#">{{ content.tag_2 }},</a></li>#}
+                                {#                                    <li><a href="#">{{ content.tag_3 }},</a></li>#}
+                                {#                                    <li><a href="#">{{ content.tag_4 }}</a></li>#}
+                                {#                                </ul>#}
+                                <div class="user-details row">
+                                    <p class="user-name col-lg-12 col-md-12 col-6"><a href="#">{{ content.Name }}</a>
+                                        <span
+                                                class="lnr lnr-user"></span></p>
+                                    <p class="date col-lg-12 col-md-12 col-6"><a href="#">{{ content.date }}</a> <span
+                                            class="lnr lnr-calendar-full"></span></p>
+                                    <p class="view col-lg-12 col-md-12 col-6"><a href="#">{{ content.views }}</a> <span
+                                            class="lnr lnr-eye"></span></p>
+                                    <p class="comments col-lg-12 col-md-12 col-6"><a href="#">{{ content.comments }}</a>
+                                        <span
+                                                class="lnr lnr-bubble"></span></p>
+                                </div>
+                            </div>
+                            <div class="col-lg-9 col-md-9 ">
+                                <div class="feature-img">
+                                    <img class="img-fluid" src="{{ content.blog_image.url }}" alt="">
+                                </div>
+                                <a class="posts-title" href="{% url 'detail' content.id %}">
+                                    <h3>{{ content.blog_title }}</h3></a>
+                                <p class="excert">
+                                    {{ content.summary }}
+                                </p>
+                                <a href="{% url 'blogsingle' %}" class="primary-btn">{{ content.blog_view_button }}</a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    <nav class="blog-pagination justify-content-center d-flex">
+                        <ul class="pagination">
+                            <li class="page-item">
+                                <a href="#" class="page-link" aria-label="Previous">
+		                                    <span aria-hidden="true">
+		                                        <span class="lnr lnr-chevron-left"></span>
+		                                    </span>
+                                </a>
+                            </li>
+                            <li class="page-item"><a href="#" class="page-link">01</a></li>
+                            <li class="page-item active"><a href="#" class="page-link">02</a></li>
+                            <li class="page-item"><a href="#" class="page-link">03</a></li>
+                            <li class="page-item"><a href="#" class="page-link">04</a></li>
+                            <li class="page-item"><a href="#" class="page-link">09</a></li>
+                            <li class="page-item">
+                                <a href="#" class="page-link" aria-label="Next">
+		                                    <span aria-hidden="true">
+		                                        <span class="lnr lnr-chevron-right"></span>
+		                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="col-lg-4 sidebar-widgets">
+
+                    <div class="widget-wrap">
+                        {% for search in blog_search_post %}
+                            <div class="single-sidebar-widget search-widget">
+                                <form class="search-form" action="#">
+                                    <input placeholder="Search Posts" name="search" type="text"
+                                           onfocus="this.placeholder = ''"
+                                           onblur="this.placeholder ='{{ search.placeholder }}'">
+                                    <button type="submit"><i class="fa fa-search"></i></button>
+                                </form>
+                            </div>
+                            <div class="single-sidebar-widget user-info-widget">
+                                <img src="{{ search.image.url }}" alt="">
+                                <a href="#"><h4>{{ search.name }}</h4></a>
+                                <p>
+                                    {{ search.post }}
+                                </p>
+                                <ul class="social-links">
+                                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-github"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-behance"></i></a></li>
+                                </ul>
+                                <p>
+                                    {{ search.description }}
+                                </p>
+                            </div>
+                        {% endfor %}
+                        <div class="single-sidebar-widget popular-post-widget">
+                            {% for head in heading %}
+                                <h4 class="popular-title">{{ head.popular_post_heading }}</h4>
+                            {% endfor %}
+                            <div class="popular-post-list">
+                                {% for post in blog_popular_post %}
+                                    <div class="single-post-list d-flex flex-row align-items-center">
+                                        <div class="thumb">
+                                            <img class="img-fluid" src="{{ post.image.url }}" alt="">
+                                        </div>
+                                        <div class="details">
+                                            <a href="{% url 'blogsingle' %}"><h6>{{ post.name }}</h6></a>
+                                            <p>{{ post.post_time }}</p>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="single-sidebar-widget ads-widget">
+                            <a href="#"><img class="img-fluid" src="{% static 'img/blog/ads-banner.jpg' %}" alt=""></a>
+                        </div>
+                        <div class="single-sidebar-widget post-category-widget">
+                            {% for head in heading %}
+                                <h4 class="category-title">{{ head.post_category_heading }}</h4>
+                            {% endfor %}
+                            <ul class="cat-list">
+                                {% for category in blog_home_category %}
+                                    <li>
+                                        <a href="#" class="d-flex justify-content-between">
+                                            <p>{{ category.category_name }}</p>
+                                            <p>{{ category.number_of_product }}</p>
+                                        </a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        <div class="single-sidebar-widget newsletter-widget">
+                            {% for news in blog_home_newsletter %}
+                                <h4 class="newsletter-title">{{ news.heading }}</h4>
+                                <p>
+                                    {{ news.description }}
+                                </p>
+                                <div class="form-group d-flex flex-row">
+                                    <div class="col-autos">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text"><i class="fa fa-envelope"
+                                                                                 aria-hidden="true"></i>
+                                                </div>
+                                            </div>
+                                            <input type="text" class="form-control" id="inlineFormInputGroup"
+                                                   placeholder="Enter email" onfocus="this.placeholder = ''"
+                                                   onblur="this.placeholder = '{{ news.email }}'">
+                                        </div>
+                                    </div>
+                                    <a href="#" class="bbtns">{{ news.subcribe }}</a>
+                                </div>
+                                <p class="text-bottom">
+                                    {{ news.subcribe_description }}
+                                </p>
+                            {% endfor %}
+                        </div>
+                        <div class="single-sidebar-widget tag-cloud-widget">
+                            <h4 class="tagcloud-title">Tag Clouds</h4>
+                            <ul>
+                                <li><a href="#">Technology</a></li>
+                                <li><a href="#">Fashion</a></li>
+                                <li><a href="#">Architecture</a></li>
+                                <li><a href="#">Fashion</a></li>
+                                <li><a href="#">Food</a></li>
+                                <li><a href="#">Technology</a></li>
+                                <li><a href="#">Lifestyle</a></li>
+                                <li><a href="#">Art</a></li>
+                                <li><a href="#">Adventure</a></li>
+                                <li><a href="#">Food</a></li>
+                                <li><a href="#">Lifestyle</a></li>
+                                <li><a href="#">Adventure</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End post-content Area -->
+
+{% endblock %}

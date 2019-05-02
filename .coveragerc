@@ -1,0 +1,16 @@
+[run]
+source=.
+omit =
+    */migrations/*
+    */site-packages/*
+    */dist-packages/*
+    portfolio/__init__.py
+    portfolio/admin.py
+    portfolio/apps.py
+    portfolio/tests.py
+    untitled1/__init__.py
+    untitled1/settings.py
+    untitled1/urls.py
+    untitled1/wsgi.py
+    portfolio/test/__init__.py
+    manage.py

@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% block content %}
+    {% load static %}
+
+    <!-- start banner Area -->
+    <section class="about-banner">
+        <div class="container">
+            <div class="row d-flex align-items-center justify-content-center">
+                <div class="about-content col-lg-12">
+                    <h1 class="text-white">
+                        Pricing Plan
+                    </h1>
+                    <p class="text-white link-nav"><a href="{% url 'portfolio:home' %}">Home </a> <span
+                            class="lnr lnr-arrow-right"></span> <a href="{% url 'portfolio:price' %}"> Pricing Plan</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End banner Area -->
+
+    <!-- Start price Area -->
+    <section class="price-area section-gap">
+        <div class="container">
+            <div class="row d-flex justify-content-center">
+
+                <div class="menu-content pb-70 col-lg-8">
+                    <div class="title text-center">
+                         <h1 class="mb-10">Choose Your Plan</h1>
+                    <p>When someone does something that they know that they shouldn’t do, did they.</p>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                {% for plan in chose_plan %}
+                <div class="col-lg-3 col-md-6 single-price">
+                    <div class="top-part">
+                        <h1 class="package-no">{{ plan.package_number }}</h1>
+                        <h4>{{ plan.package_name }}</h4>
+                        <p class="mt-10">{{ plan.package_title }}</p>
+                    </div>
+                    <div class="package-list">
+                        <ul>
+                            {{ plan.packages|safe }}
+                        </ul>
+                    </div>
+                    <div class="bottom-part">
+                        <h1>{{ plan.price }}</h1>
+                        <a class="price-btn text-uppercase" href="#">{{ plan.buy }}</a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    <!-- End price Area -->
+
+    <!-- Start faq Area -->
+    <section class="faq-area pb-120">
+        <div class="container">
+            <div class="row d-flex justify-content-center">
+                <div class="menu-content pb-70 col-lg-8">
+
+                    <div class="title text-center">
+                        <h1 class="mb-10">Frequently Asked Questions</h1>
+                        <p>It is very easy to start smoking but it is an uphill task to quit it. Ask any chain smoker or even a person.</p>
+                    </div>
+
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+
+                    <dl class="accordion">
+                        {% for question in question_answer %}
+                        <dt>
+                            <a href="">{{ question.question }}</a>
+                        </dt>
+                        <dd>
+                            {{ question.answer }}
+                        </dd>
+                        {% endfor %}
+
+                    </dl>
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End faq Area -->
+
+{% endblock %}

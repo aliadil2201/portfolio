@@ -1,0 +1,143 @@
+{% extends 'base.html' %}
+{% block content %}
+    {% load static %}
+
+    <!-- start banner Area -->
+    <section class="about-banner">
+        <div class="container">
+            <div class="row d-flex align-items-center justify-content-center">
+                <div class="about-content col-lg-12">
+                    <h1 class="text-white">
+                        Services
+                    </h1>
+                    <p class="text-white link-nav"><a href="{% url 'portfolio:home' %}">Home </a> <span
+                            class="lnr lnr-arrow-right"></span> <a href="{% url 'portfolio:services' %}"> Services</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End banner Area -->
+
+    <!-- Start services Area -->
+    <section class="services-area section-gap">
+        <div class="container">
+            <div class="row d-flex justify-content-center">
+
+                    <div class="menu-content  col-lg-7">
+                        <div class="title text-center">
+                            <h1 class="mb-10">My Offered Services</h1>
+                    <p>At about this time of year, some months after New Year’s resolutions have been made and kept,
+                        or made and neglected.</p>
+                        </div>
+                    </div>
+
+            </div>
+            <div class="row">
+                {% for i in service %}
+                    <div class="col-lg-4 col-md-6">
+                        <div class="single-services">
+                            <span class="{{ i.service_tag }}"></span>
+                            <a href="#"><h4>{{ i.Name }}</h4></a>
+                            <p>
+                                {{ i.Description }}
+                            </p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    <!-- End services Area -->
+
+    <!-- Start fact Area -->
+    <section class="facts-area section-gap" id="facts-area">
+        <div class="container">
+            <div class="row">
+                {% for complete in complete_service %}
+                    <div class="col-lg-3 col-md-6 single-fact">
+                        <h1 class="counter">{{ complete.number_of_services }}</h1>
+                        <p>{{ complete.services_title }}</p>
+                    </div>
+                {% endfor %}
+
+            </div>
+        </div>
+    </section>
+    <!-- end fact Area -->
+
+    <!-- Start price Area -->
+    <section class="price-area section-gap">
+        <div class="container">
+            <div class="row d-flex justify-content-center">
+
+                    <div class="menu-content pb-70 col-lg-8">
+                        <div class="title text-center">
+                            <h1 class="mb-10">Choose Your Plan</h1>
+                    <p>When someone does something that they know that they shouldn’t do, did they.</p>
+                        </div>
+                    </div>
+
+            </div>
+            <div class="row">
+                {% for plan in chose_plan %}
+                    <div class="col-lg-3 col-md-6 single-price">
+                        <div class="top-part">
+                            <h1 class="package-no">{{ plan.package_number }}</h1>
+                            <h4>{{ plan.package_name }}</h4>
+                            <p class="mt-10">{{ plan.package_title }}</p>
+                        </div>
+                        <div class="package-list">
+                            <ul>
+                                <li>{{ plan.package_one }}</li>
+                                <li>{{ plan.package_two }}</li>
+                                <li>{{ plan.package_three }}</li>
+                            </ul>
+                        </div>
+                        <div class="bottom-part">
+                            <h1>{{ plan.price }}</h1>
+                            <a class="price-btn text-uppercase" href="#">{{ plan.buy }}</a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    <!-- End price Area -->
+
+    <!-- Start testimonial Area -->
+    <section class="testimonial-area section-gap">
+        <div class="container">
+            <div class="row d-flex justify-content-center">
+
+                    <div class="menu-content pb-70 col-lg-8">
+                        <div class="title text-center">
+                            <h1 class="mb-10">Client’s Feedback About Me</h1>
+                    <p>It is very easy to start smoking but it is an uphill task to quit it. Ask any chain
+                        smoker or even a person.</p>
+                        </div>
+                    </div>
+
+            </div>
+            <div class="row">
+                <div class="active-testimonial">
+                    {% for reviews in feedback %}
+                        <div class="single-testimonial item d-flex flex-row">
+                            <div class="thumb">
+                                <img class="img-fluid" src="{{ reviews.Image.url }}" alt="">
+                            </div>
+                            <div class="desc">
+                                <p>
+                                    {{ reviews.feedback }}
+                                </p>
+                                <h4>{{ reviews.client_name }}</h4>
+                                <p>{{ reviews.client_post }}</p>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End testimonial Area -->
+
+{% endblock %}
