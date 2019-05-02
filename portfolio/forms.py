@@ -1,10 +1,10 @@
 from django import forms
-from .models import news_subs, ContactForm
+from .models import NewsSubscription, ContactForm
 
 
 class SendMailForm(forms.ModelForm):
     class Meta:
-        model = news_subs
+        model = NewsSubscription
         fields = ["news_email"]
 
 
